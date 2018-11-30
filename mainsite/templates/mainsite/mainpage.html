@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Siri学生管理系统</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'mainsite/css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mainsite/css/button.css' %}">
+</head>
+<body class="mainpage">
+<!--Container-->
+<div id="container">
+    <!--Header-->
+    <div id="header">
+        <div id="branding">
+            <h1 id="site-name">Siri学生管理系统</h1>
+        </div>
+    </div>
+    <!--END Header-->
+    <!--Content-->
+    <div id="content">
+        <h1>主页</h1>
+        <div id="content-main">
+            <div class="data-table  module">
+                <table>
+                    <caption>
+                        数据表
+                    </caption>
+                    <tbody>
+                    <tr class="module-student">
+                        <th scope="row">
+                            <a href="{% url 'mainsite:student' 's_no' %}">
+                                学生数据表
+                            </a>
+                        </th>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a href="{% url 'mainsite:student_edit' 0 %}" class="addlink">
+                                增加
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'mainsite:student' 's_no' %}" class="changelink">
+                                修改
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="module-course">
+                        <th scope="row">
+                            <a href="{% url 'mainsite:course' 'c_no' %}">
+                                课程数据表
+                            </a>
+                        </th>
+                         <td></td>
+                        <td></td>
+                        <td>
+                            <a href="{% url 'mainsite:course_edit' 0 %}" class="addlink">
+                                增加
+                            </a>
+                        </td>
+                        <td><a href="{% url 'mainsite:course' 'c_no' %}" class="changelink">
+                            修改
+                        </a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br class="clear">
+        <p class="backlink-box">
+            <a href="{% url 'mainsite:signin' %}" class="backlink">
+            退出
+        </a>
+        </p>
+    </div>
+    <!--END Content-->
+    <!--Footer-->
+    <div id="footer"></div>
+    <!--END Footer-->
+</div>
+<!--END Container-->
+</body>
+</html>

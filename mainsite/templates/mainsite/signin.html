@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员登录</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'mainsite/css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mainsite/css/signin.css' %}">
+</head>
+<body class="signin">
+<!--Container-->
+<div id="container">
+    <!--Header-->
+    <div id="header">
+        <div id="branding">
+            <h1 id="site-name">管理员登录</h1>
+        </div>
+    </div>
+    <!--END Header-->
+    <!--Content-->
+    <div id="content">
+        <div id="content-main">
+            <form action="{% url 'mainsite:signin_action' %}" method="post" id="signin-form">
+                {% csrf_token %}
+                <div class="form-row">
+                    <label class="required" for="id_username">用户名：</label>
+                    <input type="text" name="username" value="" autofocus required id="id_username"/>
+                </div>
+                <div class="form-row">
+                    <label class="required" for="id_password">密码：</label>
+                    <input type="text" name="password" value="" required id="id_password"/>
+                </div>
+                <div class="submit-row">
+                    <input type="submit" value="登录">
+                </div>
+            </form>
+        </div>
+        <br class="clear">
+        <label id="info">{{ info }}</label>
+    </div>
+    <!--END Content-->
+    <!--Footer-->
+    <div id="footer"></div>
+    <!--END Footer-->
+</div>
+<!--END Container-->
+</body>
+</html>

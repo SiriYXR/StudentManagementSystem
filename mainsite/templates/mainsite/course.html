@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Siri学生管理系统</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'mainsite/css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mainsite/css/button.css' %}">
+</head>
+<body class="course">
+<!--Container-->
+<div id="container">
+    <!--Header-->
+    <div id="header">
+        <div id="branding">
+            <h1 id="site-name">Siri学生管理系统</h1>
+        </div>
+    </div>
+    <!--END Header-->
+    <!--Content-->
+    <div id="content">
+        <h1>
+            课程数据表
+        </h1>
+        <div id="content-main">
+            <table id="result">
+                <tr>
+                    <th><a href="{% url 'mainsite:course' 'c_no' %}">
+                        课程编号
+                    </a></th>
+                    <th><a href="{% url 'mainsite:course' 'c_name' %}">
+                        课程名称
+                    </a></th>
+                    <th></th>
+                    <th></th>
+                    <th>
+                        <ul class="object-tools">
+                            <li>
+                                <a href="{% url 'mainsite:course_edit' 0 %}" class="addlink">
+                                    添加课程
+                                </a>
+                            </li>
+                        </ul>
+                    </th>
+
+                </tr>
+                {% for course in courses %}
+                    <tr>
+                        <th scope="row">{{ course.c_no }}</th>
+                        <td>{{ course.c_name }}</td>
+                        <td>
+                            <a href="{% url 'mainsite:score_course' course.c_no 'mainsite_student.s_no' %}"
+                               class="viewlink">
+                                查看成绩
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'mainsite:course_edit' course.c_no %}" class="changelink">
+                                修改
+                            </a></td>
+                        <td>
+                            <a href="{% url 'mainsite:course_delete' course.c_no %}" class="deletelink">
+                                删除
+                            </a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <br class="clear">
+        <p class="backlink-box">
+            <a href="{% url 'mainsite:mainpage' %}" class="backlink">
+                返回
+            </a>
+        </p>
+    </div>
+    <!--END Content-->
+    <!--Footer-->
+    <div id="footer"></div>
+    <!--END Footer-->
+</div>
+<!--End Container-->
+
+</body>
+</html>

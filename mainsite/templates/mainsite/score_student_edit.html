@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Siri学生管理系统</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'mainsite/css/base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mainsite/css/forms.css' %}">
+</head>
+<body class="student_edit">
+<!--Container-->
+<div id="container">
+    <!--Header-->
+    <div id="header">
+        <div id="branding">
+            <h1 id="site-name">Siri学生管理系统</h1>
+        </div>
+    </div>
+    <!--END Header-->
+    <!--Content-->
+    <div id="content">
+        <h1>
+            编辑学生成绩
+        </h1>
+        <div id="content-main">
+            <form action="{% url 'mainsite:score_student_edit_action' %}" method="post">
+                {% csrf_token %}
+                <input hidden="hidden" type="text" name="s_no" value="{{ s_no }}">
+                <input hidden="hidden" type="text" name="c_no" value="{{ c_no }}">
+                <div>
+                    <fieldset class="module aligned">
+                        <div class="form-row">
+                            <div>
+                                <label class="required">
+                                    学生姓名:
+                                </label>
+                                <label class="required">
+                                    {{ s_name }}
+                                </label>
+
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div>
+                                <label class="required">
+                                    课程名称:
+                                </label>
+                                <label class="required">
+                                    {{ score.sc_cno }}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div>
+                                <label class="required" for="score">
+                                    成绩:
+                                </label>
+                                <input type="number" name="score" min="0" max="100"
+                                       value="{{ score.sc_score | default:0 }}"
+                                       class="vIntegerField"
+                                       required id="score"/>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="submit-row">
+                        <input type="submit" value="保存" class="default">
+                        <p class="deletelink-box">
+                            <a href="{% url 'mainsite:score_student' s_no 'mainsite_course.c_no' %}" class="deletelink">
+                                返回
+                            </a>
+                        </p>
+
+                        <input type="reset" value="重置">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+    <!--END Content-->
+    <!--Footer-->
+    <div id="footer"></div>
+    <!--END Footer-->
+</div>
+<!--End Container-->
+
+</body>
+</html>
